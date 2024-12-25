@@ -1,0 +1,34 @@
+The "Name" column in the qurantranslation database contains Surah names (text) of the Quran. with repeated values representing verses or details within each Surah. used for grouping and identifying data for queries and processing.
+
+The "Surah" column in the qurantranslation database contains numerical identifiers (integers) of Surahs in the Quran. with repeated values representing individual verses or related details from each Surah. used for uniquely identifying and referencing Surahs for structured queries. grouping. and data organization,
+
+The "Ayat" column in the qurantranslation database contains numerical identifiers (integers) representing individual verses (Ayats) within different Surahs of the Quran. with values corresponding to the sequential position of each Ayat in its respective Surah. used for uniquely referencing. retrieving. and processing verse-level data in structured queries,
+
+The "Arabic" column in the qurantranslation database contains the Arabic text of Quranic verses (Ayats). representing the original script of the Quran. with each value corresponding to a specific verse in its respective Surah. This column is used for preserving the Quran's textual authenticity. enabling linguistic processing. and supporting queries and retrieval of verses in their original form for analysis and display,
+
+The "TranslationMuhammadTahirulQadri" column in the qurantranslation database contains the English translation of Quranic verses (Ayats) as interpreted by Muhammad Tahir-ul-Qadri. When a query is asked. the system matches the keywords related to Ayat and Surahs in this column to retrieve relevant answers from this translation,
+
+The "Translation - Arthur" column in the qurantranslation database contains the English translation of Quranic verses (Ayats) as interpreted by Arthur J. Arberry. When a query is asked. the system matches the keywords related to Ayat and Surahs in this column to retrieve relevant answers from this translation,
+
+The "Translation - Marmaduke Pickthall" column in the qurantranslation database contains the English translation of Quranic verses (Ayats) as interpreted by Marmaduke Pickthall. When a query is asked. the system matches the keywords related to Ayat and Surahs in this column to retrieve relevant answers from this translation,
+
+
+The "Tafaseer - Tafsir al-Jalalayn" column in the qurantranslation database contains detailed explanations and interpretations of Quranic verses (Ayats) as presented in Tafsir al-Jalalayn. When a query is asked. the system will match keywords related to Ayat and Surah to retrieve relevant answers from this tafseer. The answers will provide insights and contextual explanations based on the classical interpretation. offering a deeper understanding of the meanings and references within the verses,
+
+
+The "Tafaseer - Tanwir al-Miqbas min Tafsir Ibn Abbas" column in the qurantranslation database contains the interpretation of Quranic verses (Ayats) based on the teachings of Ibn Abbas. When a query is asked. the system will match keywords related to Ayat and Surah to retrieve relevant answers from this tafseer. The answers will provide a comprehensive explanation of the verses. offering insights based on Ibn Abbas' interpretation. which focuses on understanding the divine essence and its attributes in the context of each verse,
+
+The "EnglishTitle" column in the qurantranslation database contains the English titles of the Surahs (chapters) of the Quran. Each row represents the English name of a specific Surah. such as "Al-Fatihah" for the first Surah. which is also known as "The Opening." When a query is asked. the system will match the relevant keywords to identify the corresponding Surah by its English title. providing the user with answers that include the translated meaning and context of the Surah along with its relevant Ayats,
+
+The "ArabicTitle" column in the qurantranslation database contains the Arabic titles of the Surahs (chapters) of the Quran. Each row represents the Arabic name of a specific Surah. such as "ٱلْفَاتِحَة" for the first Surah. which is also known as "Al-Fatihah" in English. When a query is asked. the system will match the relevant keywords to identify the corresponding Surah by its Arabic title. This will help the user retrieve answers that include the original Arabic title. along with the translated meanings and context of the Surah and its Ayats,
+
+
+The "RomanTitle" column in the qurantranslation database contains the Romanized titles of the Surahs (chapters) of the Quran. Each value represents the Surah's title in a Romanized form. such as "al-Ḥamd" for Surah Al-Fatihah. This column aids in identifying the Surah by its Romanized title when users query the system. The system will match the Romanized Surah title with related content. such as explanations of the verses and themes,
+
+The "NumberOfVerses" column in the qurantranslation database contains the total number of verses in each Surah of the Quran. For example. the "NumberOfVerses" for Surah Al-Fatihah is 7. and for Surah Al-Baqarah. it is 286. This column is used to track the length of each Surah. helping users understand the scope and structure of the Surah when querying for specific information. When a user queries the database. the system can return relevant content based on the number of verses in a particular Surah. aiding in more targeted searches related to the verses and themes of the Surah,
+The "NumberOfRukus" column in the qurantranslation database contains the total number of rukus (sections) in each Surah of the Quran. For example. Surah Al-Fatihah has 1 ruku. while Surah Al-Baqarah has 40 rukus. This column helps categorize the Surahs into sections for easier reference and analysis. When users query the database. the system can filter and return relevant data based on the number of rukus. offering a more structured approach to accessing the content of the Surahs,
+The "PlaceOfRevelation" column in the qurantranslation database indicates whether a Surah was revealed in Makkah or Madinah. For example. Surah Al-Fatihah was revealed in Makkah. and Surah Al-Baqarah was revealed in Madinah. This column helps categorize the Surahs based on their place of revelation. which can be useful for understanding the historical and contextual background of the verses. When a user queries the database. the system can return relevant Surahs based on their place of revelation. providing insight into the context of the verses,
+
+
+
+
