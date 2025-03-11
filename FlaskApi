@@ -1,0 +1,87 @@
+import pandas as pd
+import numpy as np
+from flask import Flask, jsonify, request
+import sqlite3
+import vanna
+from vanna.remote import VannaDefault
+import logging
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+
+api_key = 'd7bf57cd96594575a19826f264c4c78c'
+
+vanna_model_name = 'chatwithquran1'
+vn = VannaDefault(model=vanna_model_name, api_key=api_key)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+logger.info("Starting Vanna setup process")
+
+# # Retrieve secrets from Key Vault
+# logger.info("Retrieving credentials from Key Vault")
+# db_user = key_vault_client.get_secret(vault_key_username).value
+# db_password = key_vault_client.get_secret(vault_key_password).value
+# logger.info("Successfully retrieved credentials")
+
+# Connect to MySQL database
+logger.info("Connecting to MySQL database")
+vn.connect_to_sqlite('qurantranslation.db')
+logger.info("Database connection established")
+
+
+@app.route('/')
+def home():
+    return jsonify({"message": "ChatWithQuran API with Vanna is running!"})
+
+
+@app.route('/query', methods=['POST'])
+def query_vanna():
+    data = request.get_json()
+    
+    if not data or "query" not in data:
+        return jsonify({"error": "Query parameter is required."}), 400
+    
+    query = data["query"]
+    
+    try:
+        # Get response from Vanna and immediately convert to JSON-compatible format
+        df_response = vn.ask(query)
+        
+        # Force conversion to JSON-compatible format
+        if isinstance(df_response, pd.DataFrame):
+            # Convert all numeric columns to standard Python types
+            df_response = df_response.astype(object)
+            
+            # Handle NaN values
+            df_response = df_response.fillna('')
+            
+            # Convert to simple Python list of dictionaries
+            response = df_response.to_dict('records')
+            
+            # Additional cleaning of any problematic values
+            for item in response:
+                for key, value in item.items():
+                    if isinstance(value, (np.int64, np.float64)):
+                        item[key] = int(value) if isinstance(value, np.int64) else float(value)
+        else:
+            response = str(df_response)
+            
+        return jsonify({"query": query, "response": response})
+        
+    except Exception as e:
+        logger.error(f"Error processing query: {str(e)}")
+        return jsonify({"error": "Failed to process query.", "details": str(e)}), 500
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
